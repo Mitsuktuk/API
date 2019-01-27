@@ -1,0 +1,1897 @@
+{
+	"info": {
+		"_postman_id": "951306a3-5797-4d48-97f9-7879616798b9",
+		"name": "TP REST GRAILS",
+		"description": "Collection pour tester l'API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "200 /api/user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3e22c364-1a7c-4bce-a15b-8e6076af7c65",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test(\"response has a body\", function () {",
+									"    pm.response.to.be.json;",
+									"})",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "text/json"
+							},
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "text/xml"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user"
+							]
+						},
+						"description": "Retourne une collection de tous les utilisateurs."
+					},
+					"response": []
+				},
+				{
+					"name": "200 /api/users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4ae4e009-4c9f-45b5-b7a9-88c36ce8416b",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test(\"response has a body\", function () {",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "text/json"
+							},
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "text/xml"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "Retourne une collection de tous les utilisateurs."
+					},
+					"response": []
+				},
+				{
+					"name": "200 /api/user/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0cb00a2b-e09e-438d-b799-cbc8a8191aad",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test(\"response has a body\", function () {",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user?id=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5",
+									"description": "(requis) L’id numérique de l’utilisateur souhaité."
+								}
+							]
+						},
+						"description": "Retourne l’utilisateur dont l’id est en paramètre."
+					},
+					"response": []
+				},
+				{
+					"name": "404 /api/user/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "43e0ae2f-9cb1-4e6e-8ebe-21237204532a",
+								"exec": [
+									"pm.test(\"response is not ok\", function () {",
+									"    pm.response.to.have.status(404);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user/?id=non",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "non",
+									"description": "(requis) L’id numérique de l’utilisateur souhaité."
+								}
+							]
+						},
+						"description": "Ne retourne pas l’utilisateur dont l’id est en paramètre. (id invalide)"
+					},
+					"response": []
+				},
+				{
+					"name": "201 /api/user/:username/:password/:firstName/:lastName/:mail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user?username=mitsuk&password=123&firstName=Marie-Mitsuko&lastName=Bochaton&mail=mariemitsuko@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "mitsuk"
+								},
+								{
+									"key": "password",
+									"value": "123"
+								},
+								{
+									"key": "firstName",
+									"value": "Marie-Mitsuko"
+								},
+								{
+									"key": "lastName",
+									"value": "Bochaton"
+								},
+								{
+									"key": "mail",
+									"value": "mariemitsuko@gmail.com"
+								}
+							]
+						},
+						"description": "Créé un utilisateur.\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "201 /api/users/:username/:password/:firstName/:lastName/:mail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a01d6d26-333a-413e-875c-9d9c59d42655",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(201);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users?password= 123&firstName= John&lastName=Doe&mail=j.doe@email.com&username=jojo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "password",
+									"value": " 123",
+									"description": "(requis) Le mot de passe de l’utilisateur à créer."
+								},
+								{
+									"key": "firstName",
+									"value": " John",
+									"description": "(requis) Le prénom de l’utilisateur à créer."
+								},
+								{
+									"key": "lastName",
+									"value": "Doe",
+									"description": "(requis) Le nom de l’utilisateur à créer."
+								},
+								{
+									"key": "mail",
+									"value": "j.doe@email.com",
+									"description": "(requis) Le mail de l’utilisateur à créer."
+								},
+								{
+									"key": "username",
+									"value": "jojo",
+									"description": "(requis) Le nom d’utilisateur de l’utilisateur à créer."
+								}
+							]
+						},
+						"description": "Créé un utilisateur.\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "400 /api/users/:username/:password/:firstName/:lastName/:mail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3203a87e-f1ef-4758-92ea-a95158be28e9",
+								"exec": [
+									"pm.test(\"response is not ok\", function () {",
+									"    pm.response.to.have.status(400);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users?password= 123&firstName= John&lastName=Doe&mail=j.doe@email.com&username=jojo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "password",
+									"value": " 123",
+									"description": "(requis) Le mot de passe de l’utilisateur à créer."
+								},
+								{
+									"key": "firstName",
+									"value": " John",
+									"description": "(requis) Le prénom de l’utilisateur à créer."
+								},
+								{
+									"key": "lastName",
+									"value": "Doe",
+									"description": "(requis) Le nom de l’utilisateur à créer."
+								},
+								{
+									"key": "mail",
+									"value": "j.doe@email.com",
+									"description": "(requis) Le mail de l’utilisateur à créer."
+								},
+								{
+									"key": "username",
+									"value": "jojo",
+									"description": "(requis) Le nom d’utilisateur de l’utilisateur à créer."
+								}
+							]
+						},
+						"description": "Nee créé pas un utilisateur."
+					},
+					"response": []
+				},
+				{
+					"name": "200 /api/user/:id/:username/:password/:firstName/:lastName/:mail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c8d9b39d-e9f3-40f6-b54e-3228bf6569e0",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user/?id=3&username=a.derien&password=secret&firstName=Alain&lastName=Derien&mail=a.derien@mail.fr",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3",
+									"description": "(requis) L’id numérique de l’utilisateur à mettre à jour."
+								},
+								{
+									"key": "username",
+									"value": "a.derien",
+									"description": "(optionnel) Le nom d’utilisateur de l’utilisateur à mettre à jour."
+								},
+								{
+									"key": "password",
+									"value": "secret",
+									"description": "(optionnel) Le mot de passe de l’utilisateur à mettre à jour."
+								},
+								{
+									"key": "firstName",
+									"value": "Alain",
+									"description": "(optionnel) Le prénom de l’utilisateur à mettre à jour.\n"
+								},
+								{
+									"key": "lastName",
+									"value": "Derien",
+									"description": "(optionnel) Le nom de l’utilisateur à mettre à jour."
+								},
+								{
+									"key": "mail",
+									"value": "a.derien@mail.fr",
+									"description": "(optionnel) Le mail de l’utilisateur à mettre à jour."
+								}
+							]
+						},
+						"description": "Met à jour l’utilisateur dont l’id est le paramètre id et les données de l’utilisateur sont renseignées en paramètre."
+					},
+					"response": []
+				},
+				{
+					"name": "400 /api/user/:id/:username/:password/:firstName/:lastName/:mail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e5c3befd-c27b-457c-8ecf-512aab5fd3d7",
+								"exec": [
+									"pm.test(\"response is not ok\", function () {",
+									"    pm.response.to.have.status(400);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user/?id=3&username=a.derien&password=secret&firstName=Alain&mail=j.doe@email.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3",
+									"description": "(requis) L’id numérique de l’utilisateur à mettre à jour."
+								},
+								{
+									"key": "username",
+									"value": "a.derien",
+									"description": "(optionnel) Le nom d’utilisateur de l’utilisateur à mettre à jour."
+								},
+								{
+									"key": "password",
+									"value": "secret",
+									"description": "(optionnel) Le mot de passe de l’utilisateur à mettre à jour."
+								},
+								{
+									"key": "firstName",
+									"value": "Alain",
+									"description": "(optionnel) Le prénom de l’utilisateur à mettre à jour.\n"
+								},
+								{
+									"key": "lastName",
+									"value": "Derien",
+									"description": "(optionnel) Le nom de l’utilisateur à mettre à jour.",
+									"disabled": true
+								},
+								{
+									"key": "mail",
+									"value": "j.doe@email.com",
+									"description": "(optionnel) Le mail de l’utilisateur à mettre à jour."
+								}
+							]
+						},
+						"description": "L'utilisateur avec l’id :id n’a pas pu être mis à jour."
+					},
+					"response": []
+				},
+				{
+					"name": "404 /api/user/:id/:username/:password/:firstName/:lastName/:mail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e5c3befd-c27b-457c-8ecf-512aab5fd3d7",
+								"exec": [
+									"pm.test(\"response is not ok\", function () {",
+									"    pm.response.to.have.status(404);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user/?id=nope&username=a.derien&password=secret&firstName=Alain&lastName=Derien&mail=a.derien@mail.fr",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "nope",
+									"description": "(requis) L’id numérique de l’utilisateur à mettre à jour."
+								},
+								{
+									"key": "username",
+									"value": "a.derien",
+									"description": "(optionnel) Le nom d’utilisateur de l’utilisateur à mettre à jour."
+								},
+								{
+									"key": "password",
+									"value": "secret",
+									"description": "(optionnel) Le mot de passe de l’utilisateur à mettre à jour."
+								},
+								{
+									"key": "firstName",
+									"value": "Alain",
+									"description": "(optionnel) Le prénom de l’utilisateur à mettre à jour.\n"
+								},
+								{
+									"key": "lastName",
+									"value": "Derien",
+									"description": "(optionnel) Le nom de l’utilisateur à mettre à jour."
+								},
+								{
+									"key": "mail",
+									"value": "a.derien@mail.fr",
+									"description": "(optionnel) Le mail de l’utilisateur à mettre à jour."
+								}
+							]
+						},
+						"description": "L’utilisateur avec l’id :id est introuvable."
+					},
+					"response": []
+				},
+				{
+					"name": "200 /api/user/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "159bce72-9e9d-4d12-9892-d0c2f88641cd",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user?id=7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "7",
+									"description": "(requis) L’id numérique de l’utilisateur à supprimer."
+								}
+							]
+						},
+						"description": "Supprime l’utilisateur dont l’id est en paramètre."
+					},
+					"response": []
+				},
+				{
+					"name": "404 /api/user/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d27808a4-777f-4efe-9b78-1a3997d0b12a",
+								"exec": [
+									"pm.test(\"response is not ok\", function () {",
+									"    pm.response.to.have.status(404);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user?id=nope",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "nope",
+									"description": "(requis) L’id numérique de l’utilisateur à supprimer."
+								}
+							]
+						},
+						"description": "L'utilisateur avec l’id :id est introuvable."
+					},
+					"response": []
+				}
+			],
+			"description": "Tests de l'API User"
+		},
+		{
+			"name": "Message",
+			"item": [
+				{
+					"name": "200 /api/message",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ad0f7f0e-4993-41c9-8bb6-e2413232934a",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test(\"response has a body\", function () {",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "text/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "text/xml"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/message",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"message"
+							]
+						},
+						"description": "Retourne une collection de tous les messages."
+					},
+					"response": []
+				},
+				{
+					"name": "200 /api/messages",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6a59ba7c-3853-4766-a684-d48c2a56c79a",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test(\"response has a body\", function () {",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/messages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"messages"
+							]
+						},
+						"description": "Retourne une collection de tous les messages.\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "200 /api/message/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "255c0462-5b1d-41b3-94ab-5785463f92b0",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test(\"response has a body\", function () {",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "text/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "text/xml"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/message/?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"message",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "(requis) L’id numérique du message souhaité."
+								}
+							]
+						},
+						"description": "Retourne le message dont l’id est en paramètre."
+					},
+					"response": []
+				},
+				{
+					"name": "404 /api/message/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0297cc40-4f2d-418c-8291-f72c3f50b771",
+								"exec": [
+									"pm.test(\"response is not ok\", function () {",
+									"    pm.response.to.have.status(404);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "text/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "text/xml"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/message/?id=introuvable",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"message",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "introuvable",
+									"description": "(requis) L’id numérique du message souhaité."
+								}
+							]
+						},
+						"description": "Le message avec l'id :id est introuvable"
+					},
+					"response": []
+				},
+				{
+					"name": "201 /api/message/:author.id/:messageContent/:receiver.id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "80c8d96a-2692-4783-84d5-1be37e24bbc5",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(201);",
+									"})",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/xml",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/message?author.id=12&messageContent=Contenu de mon message !&receiver.id=13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"message"
+							],
+							"query": [
+								{
+									"key": "author.id",
+									"value": "12",
+									"description": "(requis) L’id numérique de l’utilisateur auteur du message à créer."
+								},
+								{
+									"key": "messageContent",
+									"value": "Contenu de mon message !",
+									"description": "(requis) Le contenu du message à créer à créer.\n"
+								},
+								{
+									"key": "receiver.id",
+									"value": "13",
+									"description": "(optionnel) L’id numérique de l’utilisateur destinataire du message à créer."
+								}
+							]
+						},
+						"description": "Créé un message."
+					},
+					"response": []
+				},
+				{
+					"name": "201 /api/messages/:author.id/:messageContent/:receiver.id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6c60c053-d47b-4f97-b1b9-23293bcff953",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(201);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/messages?author.id=15&messageContent=Un autre message !",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"messages"
+							],
+							"query": [
+								{
+									"key": "author.id",
+									"value": "15",
+									"description": "(requis) L’id numérique de l’utilisateur auteur du message à créer."
+								},
+								{
+									"key": "messageContent",
+									"value": "Un autre message !",
+									"description": "(requis) Le contenu du message à créer à créer."
+								},
+								{
+									"key": "receiver.id",
+									"value": "17",
+									"description": "(optionnel) L’id numérique de l’utilisateur destinataire du message à créer.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Créé un message."
+					},
+					"response": []
+				},
+				{
+					"name": "400 /api/messages/:author.id/:messageContent/:receiver.id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7a354cde-d540-40a0-a655-ac4b0a378044",
+								"exec": [
+									"pm.test(\"response is not ok\", function () {",
+									"    pm.response.to.have.status(400);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/messages?author.id=15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"messages"
+							],
+							"query": [
+								{
+									"key": "author.id",
+									"value": "15",
+									"description": "(requis) L’id numérique de l’utilisateur auteur du message à créer."
+								},
+								{
+									"key": "messageContent",
+									"value": "Un autre message !",
+									"description": "(requis) Le contenu du message à créer à créer.",
+									"disabled": true
+								},
+								{
+									"key": "receiver.id",
+									"value": "17",
+									"description": "(optionnel) L’id numérique de l’utilisateur destinataire du message à créer.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Le message n’a pas pu être créé."
+					},
+					"response": []
+				},
+				{
+					"name": "200 /api/message/:id/:author.id/:messageContent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "354248ca-552b-48fc-9974-44ce1091ad77",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/message?id=1&author.id=1&messageContent=Le nouveau contenu du message.",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"message"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "(requis) L’id numérique du message à mettre à jour."
+								},
+								{
+									"key": "author.id",
+									"value": "1",
+									"description": "(optionnel) L’id numérique de l’utilisateur auteur du message à mettre à jour."
+								},
+								{
+									"key": "messageContent",
+									"value": "Le nouveau contenu du message.",
+									"description": "(optionnel) Le contenu du message à créer à mettre à jour."
+								}
+							]
+						},
+						"description": "Met à jour le message dont l’id est le paramètre id et les données du message sont renseignées en paramètre."
+					},
+					"response": []
+				},
+				{
+					"name": "404 /api/message/:id/:author.id/:messageContent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0950fd68-51c1-453c-a946-f4cd9e2b49fd",
+								"exec": [
+									"pm.test(\"response is not ok\", function () {",
+									"    pm.response.to.have.status(404);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/message?id=non&author.id=1&messageContent=Le nouveau contenu du message.",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"message"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "non",
+									"description": "(requis) L’id numérique du message à mettre à jour."
+								},
+								{
+									"key": "author.id",
+									"value": "1",
+									"description": "(optionnel) L’id numérique de l’utilisateur auteur du message à mettre à jour."
+								},
+								{
+									"key": "messageContent",
+									"value": "Le nouveau contenu du message.",
+									"description": "(optionnel) Le contenu du message à créer à mettre à jour."
+								}
+							]
+						},
+						"description": "Le message avec l’id :id est introuvable."
+					},
+					"response": []
+				},
+				{
+					"name": "200 /api/message/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d0d937f-0d48-4b47-8be8-0b2a0336db87",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/message?id=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"message"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5",
+									"description": "(requis) L’id numérique du message à supprimer."
+								}
+							]
+						},
+						"description": "Supprime le message dont l’id est en paramètre.\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "404 /api/message/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b929c622-a5ff-4836-b29f-adc582f8d4d2",
+								"exec": [
+									"pm.test(\"response is not ok\", function () {",
+									"    pm.response.to.have.status(404);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/message?id=non",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"message"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "non",
+									"description": "(requis) L’id numérique du message à supprimer."
+								}
+							]
+						},
+						"description": "Le message avec l’id :id est introuvable."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MessageToUser",
+			"item": [
+				{
+					"name": "201 /api/messageToUser/:message.id/:user.id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5bfa2e17-025b-484d-ab93-4ff983701e69",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(201);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/messageToUser/?message.id=1&user.id=20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"messageToUser",
+								""
+							],
+							"query": [
+								{
+									"key": "message.id",
+									"value": "1",
+									"description": "(requis) L’id numérique du message à adresser."
+								},
+								{
+									"key": "user.id",
+									"value": "20",
+									"description": "(requis) L’id numérique du user qui reçoit le message."
+								}
+							]
+						},
+						"description": "Adresse le message dont l’id est en paramètre à l’user donné en paramètre."
+					},
+					"response": []
+				},
+				{
+					"name": "201 /api/messageToUser/:author.id/:messageContent/:receiver.id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d7ee3ba7-f69e-472b-8454-12e0aee15062",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(201);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/messageToUser/?author.id=11&messageContent=Je suis le nouveau message à adresser.&user.id=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"messageToUser",
+								""
+							],
+							"query": [
+								{
+									"key": "author.id",
+									"value": "11",
+									"description": "(requis) L’id numérique de l’auteur du message à créer puis à adresser."
+								},
+								{
+									"key": "messageContent",
+									"value": "Je suis le nouveau message à adresser.",
+									"description": "(requis) Le texte qui sera le contenu du message à créer puis à adresser."
+								},
+								{
+									"key": "user.id",
+									"value": "10",
+									"description": "(requis) L’id numérique du user qui reçoit le message."
+								}
+							]
+						},
+						"description": "Adresse le nouveau message dont l’auteur et le contenu sont en paramètre à l’user donné en paramètre."
+					},
+					"response": []
+				},
+				{
+					"name": "400 /api/messageToUser/:message.id/:user.id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bbbc56b3-e00b-4079-bdde-fa1d5b678207",
+								"exec": [
+									"pm.test(\"response is not ok\", function () {",
+									"    pm.response.to.have.status(400);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/messageToUser/?user.id=20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"messageToUser",
+								""
+							],
+							"query": [
+								{
+									"key": "message.id",
+									"value": "1",
+									"description": "(requis) L’id numérique du message à adresser.",
+									"disabled": true
+								},
+								{
+									"key": "user.id",
+									"value": "20",
+									"description": "(requis) L’id numérique du user qui reçoit le message."
+								}
+							]
+						},
+						"description": "Le message n’a pas pu être récupéré."
+					},
+					"response": []
+				},
+				{
+					"name": "400 /api/messageToUser/:message.id/:user.id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "99add89c-e20d-459b-a0e5-b4cdb402472b",
+								"exec": [
+									"pm.test(\"response is not ok\", function () {",
+									"    pm.response.to.have.status(400);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/messageToUser/?message.id=non&user.id=20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"messageToUser",
+								""
+							],
+							"query": [
+								{
+									"key": "message.id",
+									"value": "non",
+									"description": "(requis) L’id numérique du message à adresser."
+								},
+								{
+									"key": "user.id",
+									"value": "20",
+									"description": "(requis) L’id numérique du user qui reçoit le message."
+								}
+							]
+						},
+						"description": "Le message n’a pas pu être attribué."
+					},
+					"response": []
+				},
+				{
+					"name": "404 /api/messageToUser/:message.id/:user.id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0f683727-0272-4ef2-96f5-7db291bf42a3",
+								"exec": [
+									"pm.test(\"response is not ok\", function () {",
+									"    pm.response.to.have.status(404);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/messageToUser/?message.id=1&user.id=no",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"messageToUser",
+								""
+							],
+							"query": [
+								{
+									"key": "message.id",
+									"value": "1",
+									"description": "(requis) L’id numérique du message à adresser."
+								},
+								{
+									"key": "user.id",
+									"value": "no",
+									"description": "(requis) L’id numérique du user qui reçoit le message."
+								}
+							]
+						},
+						"description": "L’user est introuvable."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MessageToGroup",
+			"item": [
+				{
+					"name": "201 /api/messageToGroup/:message.id/:role.id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "510d4b3d-901b-45dc-a1fc-7536bfed683e",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(201);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/messageToGroup/?message.id=43&group.id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"messageToGroup",
+								""
+							],
+							"query": [
+								{
+									"key": "message.id",
+									"value": "43",
+									"description": "(requis) L’id numérique du message à adresser."
+								},
+								{
+									"key": "group.id",
+									"value": "1",
+									"description": "(requis) L’id numérique du groupe donc chaque membre reçoit le message."
+								}
+							]
+						},
+						"description": "Adresse le message dont l’id est en paramètre à chaque membre du groupe donné en paramètre."
+					},
+					"response": []
+				},
+				{
+					"name": "201 /api/messageToGroup/:author.id/:messageContent/:role.id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "78e983f8-ed90-4c3f-9ec9-879b8e4540c1",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(201);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/messageToGroup/?author.id=1&messageContent=Le texte du nouveau message à adresser à un groupe.&group.id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"messageToGroup",
+								""
+							],
+							"query": [
+								{
+									"key": "author.id",
+									"value": "1",
+									"description": "(requis) L’id numérique de l’auteur du message à créer puis à adresser."
+								},
+								{
+									"key": "messageContent",
+									"value": "Le texte du nouveau message à adresser à un groupe.",
+									"description": "(requis) Le texte qui sera le contenu du message à créer puis à adresser."
+								},
+								{
+									"key": "group.id",
+									"value": "1",
+									"description": "(requis) L’id numérique du groupe donc chaque membre reçoit le message."
+								}
+							]
+						},
+						"description": "Adresse le nouveau message dont l’auteur et le contenu sont en paramètre à chaque membre du groupe donné en paramètre.\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "400 /api/messageToGroup/:author.id/:messageContent/:role.id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d1fd0ec7-26c9-48f2-bd1c-7bc6210d32b7",
+								"exec": [
+									"pm.test(\"response is not ok\", function () {",
+									"    pm.response.to.have.status(400);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/messageToGroup/?messageContent=Le texte du nouveau message à adresser à un groupe.&group.id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"messageToGroup",
+								""
+							],
+							"query": [
+								{
+									"key": "author.id",
+									"value": "1",
+									"description": "(requis) L’id numérique de l’auteur du message à créer puis à adresser.",
+									"disabled": true
+								},
+								{
+									"key": "messageContent",
+									"value": "Le texte du nouveau message à adresser à un groupe.",
+									"description": "(requis) Le texte qui sera le contenu du message à créer puis à adresser."
+								},
+								{
+									"key": "group.id",
+									"value": "1",
+									"description": "(requis) L’id numérique du groupe donc chaque membre reçoit le message."
+								}
+							]
+						},
+						"description": "Le message n’a pas pu être récupéré."
+					},
+					"response": []
+				},
+				{
+					"name": "400 /api/messageToGroup/:author.id/:messageContent/:role.id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "84649463-f727-4f93-86ba-8bd04cef6a88",
+								"exec": [
+									"pm.test(\"response is not ok\", function () {",
+									"    pm.response.to.have.status(400);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/messageToGroup/?author.id=1&group.id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"messageToGroup",
+								""
+							],
+							"query": [
+								{
+									"key": "author.id",
+									"value": "1",
+									"description": "(requis) L’id numérique de l’auteur du message à créer puis à adresser."
+								},
+								{
+									"key": "messageContent",
+									"value": "Le texte du nouveau message à adresser à un groupe.",
+									"description": "(requis) Le texte qui sera le contenu du message à créer puis à adresser.",
+									"disabled": true
+								},
+								{
+									"key": "group.id",
+									"value": "1",
+									"description": "(requis) L’id numérique du groupe donc chaque membre reçoit le message."
+								}
+							]
+						},
+						"description": "Le message n’a pas pu être attribué."
+					},
+					"response": []
+				},
+				{
+					"name": "404 /api/messageToGroup/:author.id/:messageContent/:role.id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9232902-e528-4ada-8ef1-ef0b06fb578f",
+								"exec": [
+									"pm.test(\"response is not ok\", function () {",
+									"    pm.response.to.have.status(404);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/messageToGroup/?author.id=1&messageContent=Le texte du nouveau message à adresser à un groupe.&group.id=156",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"messageToGroup",
+								""
+							],
+							"query": [
+								{
+									"key": "author.id",
+									"value": "1",
+									"description": "(requis) L’id numérique de l’auteur du message à créer puis à adresser."
+								},
+								{
+									"key": "messageContent",
+									"value": "Le texte du nouveau message à adresser à un groupe.",
+									"description": "(requis) Le texte qui sera le contenu du message à créer puis à adresser."
+								},
+								{
+									"key": "group.id",
+									"value": "156",
+									"description": "(requis) L’id numérique du groupe donc chaque membre reçoit le message."
+								}
+							]
+						},
+						"description": "Le groupe est introuvable."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
